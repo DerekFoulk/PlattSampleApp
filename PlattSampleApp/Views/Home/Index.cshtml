@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="btn btn-default">
-                @Html.ActionLink("See Results", "GetPlanetTwentyTwo", "Home", new {planetid = "22"}, null)
+                <a asp-area="" asp-controller="Home" asp-action="GetPlanetTwentyTwo" asp-route-id="22">See Results</a>
             </div>
             <span>Get Details for Planet 22</span>
         </div>
