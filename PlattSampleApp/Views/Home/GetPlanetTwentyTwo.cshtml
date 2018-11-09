@@ -1,24 +1,63 @@
-﻿@model PlattSampleApp.Models.SinglePlanetViewModel
+﻿@model SinglePlanetViewModel
 
-<!DOCTYPE html>
+@{
+    ViewData["Title"] = $"{Model.Name} (Planet)";
+}
 
-<html>
-<head>
-    <title>Details for Planet Number 22</title>
-</head>
-<body>
-<h3>Details for Planet Number 22</h3>
+<h2>@ViewData["Title"]</h2>
+
 <div>
-    <ul>
-        <li>Planet Name: @Model.Name</li>
-        <li>Length of Day: @Model.LengthOfDay hours</li>
-        <li>Length of Year: @Model.LengthOfYear days</li>
-        <li>Diameter: @Model.Diameter km</li>
-        <li>Climate: @Model.Climate</li>
-        <li>Gravity: @Model.Gravity</li>
-        <li>Surface Water: @Model.SurfaceWaterPercentage %</li>
-        <li>Population: @Int64.Parse(Model.Population).ToString("N0")</li>
-    </ul>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LengthOfDay)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LengthOfDay)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LengthOfYear)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LengthOfYear)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Diameter)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Diameter)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Climate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Climate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Gravity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gravity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SurfaceWaterPercentage)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SurfaceWaterPercentage)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Population)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Population)
+        </dd>
+    </dl>
 </div>
-</body>
-</html>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

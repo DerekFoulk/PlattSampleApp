@@ -5,11 +5,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PlattSampleApp.Models;
+using PlattSampleApp.Services;
 
 namespace PlattSampleApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly SwapiService _swapiService;
+
+        public HomeController(SwapiService swapiService)
+        {
+            _swapiService = swapiService;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -24,11 +32,11 @@ namespace PlattSampleApp.Controllers
             return View(model);
         }
 
-        public ActionResult GetPlanetTwentyTwo(int planetid)
+        public async Task<IActionResult> GetPlanetTwentyTwo(int id)
         {
-            var model = new SinglePlanetViewModel();
+            var planet = await _swapiService.GetPlanet(id);
 
-            // TODO: Implement this controller action
+            var model = new SinglePlanetViewModel(planet);
 
             return View(model);
         }
