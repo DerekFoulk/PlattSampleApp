@@ -1,24 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using PlattSampleApp.Models.Swapi;
 
 namespace PlattSampleApp.Models
 {
     public class ResidentSummary
     {
+        public ResidentSummary(Person person)
+        {
+            Name = person.Name;
+            Height = int.TryParse(person.Height, out var height) ? height : (int?)null;
+            Weight = int.TryParse(person.Mass, out var weight) ? weight : (int?)null;
+            Gender = person.Gender;
+            HairColor = person.HairColor;
+            EyeColor = person.EyeColor;
+            SkinColor = person.SkinColor;
+        }
+
         public string Name { get; set; }
 
-        public string Height { get; set; }
+        [DisplayFormat(DataFormatString = "{0:N0} cm")]
+        public int? Height { get; set; }
 
-        public string Weight { get; set; }
+        [DisplayFormat(DataFormatString = "{0:N0} kg")]
+        public int? Weight { get; set; }
 
         public string Gender { get; set; }
 
+        [DisplayName("Hair Color")]
         public string HairColor { get; set; }
 
+        [DisplayName("Eye Color")]
         public string EyeColor { get; set; }
 
+        [DisplayName("Skin Color")]
         public string SkinColor { get; set; }
     }
 }

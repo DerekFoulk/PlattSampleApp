@@ -41,9 +41,11 @@ namespace PlattSampleApp.Controllers
             return View(model);
         }
 
-        public ActionResult GetResidentsOfPlanetNaboo(string planetname)
+        public async Task<ActionResult> GetResidentsOfPlanetNaboo(string planetName)
         {
-            var model = new PlanetResidentsViewModel();
+            var residents = await _swapiService.GetResidents(planetName);
+
+            var model = new PlanetResidentsViewModel(planetName, residents);
 
             // TODO: Implement this controller action
 

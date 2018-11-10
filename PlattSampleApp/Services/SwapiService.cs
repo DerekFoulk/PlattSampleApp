@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -26,22 +27,52 @@ namespace PlattSampleApp.Services
 
         public async Task<IEnumerable<Planet>> GetPlanets()
         {
-            var results = new List<Planet>();
+            var planets = new List<Planet>();
 
             var nextPage = "planets";
 
             while (!string.IsNullOrWhiteSpace(nextPage))
             {
-                var planets = await GetPlanetsPage(nextPage);
+                var currentPage = await GetPlanetsPage(nextPage);
 
-                results.AddRange(planets.Results);
+                planets.AddRange(currentPage.Results);
 
-                nextPage = planets.Next;
+                nextPage = currentPage.Next;
             }
 
-            return results;
+            return planets;
         }
 
+        public async Task<IEnumerable<Person>> GetResidents(string planetName)
+        {
+            if (string.IsNullOrWhiteSpace(planetName))
+                throw new ArgumentException($"{nameof(planetName)} must not be null, empty or whitespace.", nameof(planetName));
+
+            var planets = await GetPlanets();
+            var planet = planets.SingleOrDefault(x => x.Name == planetName);
+
+            if (planet == null)
+                throw new Exception("Unknown planet requested.");
+
+            var people = new List<Person>();
+
+            var nextPage = "people";
+
+            while (!string.IsNullOrWhiteSpace(nextPage))
+            {
+                var currentPage = await GetPeoplePage(nextPage);
+
+                people.AddRange(currentPage.Results);
+
+                nextPage = currentPage.Next;
+            }
+
+            var residents = people.Where(x => x.Homeworld == planet.Url);
+
+            return residents;
+        }
+
+        // TODO: Combine the following two methods
         private async Task<Planets> GetPlanetsPage(string uri)
         {
             var response = await _swapiClient.HttpClient.GetStringAsync(uri);
@@ -49,6 +80,15 @@ namespace PlattSampleApp.Services
             var planets = JsonConvert.DeserializeObject<Planets>(response);
 
             return planets;
+        }
+
+        private async Task<People> GetPeoplePage(string uri)
+        {
+            var response = await _swapiClient.HttpClient.GetStringAsync(uri);
+
+            var people = JsonConvert.DeserializeObject<People>(response);
+
+            return people;
         }
     }
 }

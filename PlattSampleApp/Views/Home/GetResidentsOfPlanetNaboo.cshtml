@@ -1,28 +1,11 @@
-﻿@model PlattSampleApp.Models.PlanetResidentsViewModel
+﻿@model PlanetResidentsViewModel
 
-<!DOCTYPE html>
+@{
+    ViewData["Title"] = $"Residents of Planet {Model.PlanetName}";
+}
 
-<html>
-<head>
-    <title>Residents of Planet Naboo</title>
-</head>
-<body>
-<div>
-    <h3>Residents of Planet Naboo</h3>
-    @foreach (var person in Model.Residents)
-    {
-        <div>
-            <ul>
-                <li>Name: @person.Name</li>
-                <li>Gender: @person.Gender</li>
-                <li>Height: @person.Height cm</li>
-                <li>Weight: @person.Weight kg</li>
-                <li>Hair Color: @person.HairColor</li>
-                <li>Eye Color: @person.EyeColor</li>
-                <li>Skin Color: @person.SkinColor</li>
-            </ul>
-        </div>
-    }
-</div>
-</body>
-</html>
+<h1>@ViewData["Title"]</h1>
+
+<section class="row">
+    @Html.DisplayFor(x => x.Residents)
+</section>
