@@ -1,38 +1,33 @@
-﻿@model PlattSampleApp.Models.AllPlanetsViewModel
+﻿@model AllPlanetsViewModel
 
-<!DOCTYPE html>
+@{
+    ViewData["Title"] = "All Planets - Largest Diameter to Smallest Diameter";
+}
 
-<html>
-<head>
-    <title>All Planets - Largest Diameter to Smallest Diameter</title>
-</head>
-<body>
-<div>
-    <h3>All Planets - Largest Diameter to Smallest Diameter</h3>
-    <h5>Average Diameter: @Model.AverageDiameter.ToString("N2")</h5>
-    <table class="table table-striped">
-        <thead>
+<h1>@ViewData["Title"]</h1>
+
+<p>@Html.DisplayNameFor(model => model.AverageDiameter): @Html.DisplayFor(model => model.AverageDiameter)</p>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Planets[0].Name)</th>
+        <th>@Html.DisplayNameFor(model => model.Planets[0].Population)</th>
+        <th>@Html.DisplayNameFor(model => model.Planets[0].Diameter)</th>
+        <th>@Html.DisplayNameFor(model => model.Planets[0].Terrain)</th>
+        <th>@Html.DisplayNameFor(model => model.Planets[0].LengthOfYear)</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var planet in Model.Planets)
+    {
         <tr>
-            <td>Planet Name</td>
-            <td>Population</td>
-            <td>Diameter</td>
-            <td>Terrain</td>
-            <td>Length Of Year</td>
+            <td>@Html.DisplayFor(modelItem => planet.Name)</td>
+            <td>@Html.DisplayFor(modelItem => planet.Population)</td>
+            <td>@Html.DisplayFor(modelItem => planet.Diameter)</td>
+            <td>@Html.DisplayFor(modelItem => planet.Terrain)</td>
+            <td>@Html.DisplayFor(modelItem => planet.LengthOfYear)</td>
         </tr>
-        </thead>
-        <tbody>
-        @foreach (var planet in Model.Planets)
-        {
-            <tr>
-                <td>@planet.Name</td>
-                <td>@planet.FormattedPopulation</td>
-                <td>@planet.Diameter</td>
-                <td>@planet.Terrain</td>
-                <td>@planet.LengthOfYear</td>
-            </tr>
-        }
-        </tbody>
-    </table>
-</div>
-</body>
-</html>
+    }
+    </tbody>
+</table>

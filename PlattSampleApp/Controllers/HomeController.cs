@@ -23,11 +23,11 @@ namespace PlattSampleApp.Controllers
             return View();
         }
 
-        public ActionResult GetAllPlanets()
+        public async Task<ActionResult> GetAllPlanets()
         {
-            var model = new AllPlanetsViewModel();
+            var planets = await _swapiService.GetPlanets();
 
-            // TODO: Implement this controller action
+            var model = new AllPlanetsViewModel(planets);
 
             return View(model);
         }

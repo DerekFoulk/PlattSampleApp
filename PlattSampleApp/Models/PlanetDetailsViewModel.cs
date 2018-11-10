@@ -1,22 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using PlattSampleApp.Models.Swapi;
 
 namespace PlattSampleApp.Models
 {
     public class PlanetDetailsViewModel
     {
+        public PlanetDetailsViewModel(Planet planet)
+        {
+            Name = planet.Name;
+            Population = long.TryParse(planet.Population, out var population) ? population : (long?)null;
+            Diameter = int.TryParse(planet.Diameter, out var diameter) ? diameter : (int?)null;
+            Terrain = planet.Terrain;
+            LengthOfYear = int.TryParse(planet.OrbitalPeriod, out var lengthOfYear) ? lengthOfYear : (int?)null;
+        }
+
+        [DisplayName("Planet Name")]
         public string Name { get; set; }
 
-        public string Population { get; set; }
+        [DisplayFormat(DataFormatString = "{0:N0}", NullDisplayText = "(Unknown)")]
+        public long? Population { get; set; }
 
-        public int Diameter { get; set; }
+        [DisplayFormat(DataFormatString = "{0:N0}km", NullDisplayText = "(Unknown)")]
+        public int? Diameter { get; set; }
 
         public string Terrain { get; set; }
 
-        public string LengthOfYear { get; set; }
-
-        public string FormattedPopulation => Population == "unknown" ? "unknown" : long.Parse(Population).ToString("N0");
+        [DisplayName("Length of Year")]
+        [DisplayFormat(DataFormatString = "{0:N0} days", NullDisplayText = "(Unknown)")]
+        public int? LengthOfYear { get; set; }
     }
 }
