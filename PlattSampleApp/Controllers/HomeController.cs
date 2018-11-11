@@ -52,9 +52,11 @@ namespace PlattSampleApp.Controllers
             return View(model);
         }
 
-        public ActionResult VehicleSummary()
+        public async Task<ActionResult> VehicleSummary()
         {
-            var model = new VehicleSummaryViewModel();
+            var vehicles = await _swapiService.GetVehicles();
+
+            var model = new VehicleSummaryViewModel(vehicles);
 
             // TODO: Implement this controller action
 
