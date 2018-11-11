@@ -3,14 +3,8 @@ using Newtonsoft.Json;
 
 namespace PlattSampleApp.Models.Swapi
 {
-    public class Person
+    public class Person : Result
     {
-        /// <summary>
-        /// The name of this person.
-        /// </summary>
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
         /// <summary>
         /// The birth year of the person, using the in-universe standard of BBY or ABY - Before the Battle of Yavin or After the Battle of Yavin. The Battle of Yavin is a battle that occurs at the end of Star Wars episode IV: A New Hope.
         /// </summary>
@@ -60,12 +54,6 @@ namespace PlattSampleApp.Models.Swapi
         public string Homeworld { get; set; }
 
         /// <summary>
-        /// An array of film resource URLs that this person has been in.
-        /// </summary>
-        [JsonProperty("films")]
-        public IEnumerable<string> Films { get; set; }
-
-        /// <summary>
         /// An array of species resource URLs that this person belongs to.
         /// </summary>
         [JsonProperty("species")]
@@ -82,11 +70,5 @@ namespace PlattSampleApp.Models.Swapi
         /// </summary>
         [JsonProperty("vehicles")]
         public IEnumerable<string> Vehicles { get; set; }
-
-        /// <summary>
-        /// The hypermedia URL of this resource.
-        /// </summary>
-        [JsonProperty("url")]
-        public string Url { get; set; }
     }
 }
