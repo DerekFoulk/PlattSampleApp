@@ -22,7 +22,7 @@ namespace PlattSampleApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<SwapiService>();
+            services.AddSingleton<ISwapiService, SwapiService>();
 
             services.AddMvc();
         }

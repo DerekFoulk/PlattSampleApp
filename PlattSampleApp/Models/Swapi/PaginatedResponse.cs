@@ -2,7 +2,7 @@
 
 namespace PlattSampleApp.Models.Swapi
 {
-    public class People : IPaginatedResponse<Person>
+    public class PaginatedResponse<T> : IPaginatedResponse<T>
     {
         public int Count { get; set; }
 
@@ -10,6 +10,6 @@ namespace PlattSampleApp.Models.Swapi
 
         public string Previous { get; set; }
 
-        public IEnumerable<Person> Results { get; set; }
+        public IEnumerable<T> Results { get; set; }
     }
 }

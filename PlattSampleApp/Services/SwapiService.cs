@@ -7,7 +7,7 @@ using PlattSampleApp.Models.Swapi;
 
 namespace PlattSampleApp.Services
 {
-    public class SwapiService
+    public class SwapiService : ISwapiService
     {
         private readonly SwapiClient _swapiClient;
 
@@ -18,6 +18,9 @@ namespace PlattSampleApp.Services
 
         public async Task<Planet> GetPlanet(int id)
         {
+            if (id <= 0)
+                throw new ArgumentException($"{nameof(id)} must not be negative.", nameof(id));
+
             var response = await _swapiClient.HttpClient.GetStringAsync($"planets/{id}");
 
             var planet = JsonConvert.DeserializeObject<Planet>(response);
@@ -25,20 +28,21 @@ namespace PlattSampleApp.Services
             return planet;
         }
 
+        public async Task<Planet> GetPlanet(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException($"{nameof(name)} must not be null, empty or whitespace.", nameof(name));
+
+            var planets = await CompilePaginatedResults<Planet>($"planets?search={name}");
+
+            var planet = planets.FirstOrDefault();
+
+            return planet;
+        }
+
         public async Task<IEnumerable<Planet>> GetPlanets()
         {
-            var planets = new List<Planet>();
-
-            var nextPage = "planets";
-
-            while (!string.IsNullOrWhiteSpace(nextPage))
-            {
-                var currentPage = await GetPlanetsPage(nextPage);
-
-                planets.AddRange(currentPage.Results);
-
-                nextPage = currentPage.Next;
-            }
+            var planets = await CompilePaginatedResults<Planet>("planets");
 
             return planets;
         }
@@ -48,24 +52,9 @@ namespace PlattSampleApp.Services
             if (string.IsNullOrWhiteSpace(planetName))
                 throw new ArgumentException($"{nameof(planetName)} must not be null, empty or whitespace.", nameof(planetName));
 
-            var planets = await GetPlanets();
-            var planet = planets.SingleOrDefault(x => x.Name == planetName);
+            var planet = await GetPlanet(planetName);
 
-            if (planet == null)
-                throw new Exception("Unknown planet requested.");
-
-            var people = new List<Person>();
-
-            var nextPage = "people";
-
-            while (!string.IsNullOrWhiteSpace(nextPage))
-            {
-                var currentPage = await GetPeoplePage(nextPage);
-
-                people.AddRange(currentPage.Results);
-
-                nextPage = currentPage.Next;
-            }
+            var people = await CompilePaginatedResults<Person>("people");
 
             var residents = people.Where(x => x.Homeworld == planet.Url);
 
@@ -74,48 +63,36 @@ namespace PlattSampleApp.Services
 
         public async Task<IEnumerable<Vehicle>> GetVehicles()
         {
-            var vehicles = new List<Vehicle>();
+            var vehicles = await CompilePaginatedResults<Vehicle>("vehicles");
 
-            var nextPage = "vehicles";
+            return vehicles;
+        }
+
+        private async Task<IEnumerable<T>> CompilePaginatedResults<T>(string uri)
+        {
+            var results = new List<T>();
+
+            var nextPage = uri;
 
             while (!string.IsNullOrWhiteSpace(nextPage))
             {
-                var currentPage = await GetVehiclesPage(nextPage);
+                var currentPage = await GetPage<T>(nextPage);
 
-                vehicles.AddRange(currentPage.Results);
+                results.AddRange(currentPage.Results);
 
                 nextPage = currentPage.Next;
             }
 
-            return vehicles;
+            return results;
         }
 
-        // TODO: Combine the following three methods
-        private async Task<Planets> GetPlanetsPage(string uri)
+        private async Task<IPaginatedResponse<T>> GetPage<T>(string uri)
         {
             var response = await _swapiClient.HttpClient.GetStringAsync(uri);
 
-            var planets = JsonConvert.DeserializeObject<Planets>(response);
+            var results = JsonConvert.DeserializeObject<PaginatedResponse<T>>(response);
 
-            return planets;
-        }
-
-        private async Task<People> GetPeoplePage(string uri)
-        {
-            var response = await _swapiClient.HttpClient.GetStringAsync(uri);
-
-            var people = JsonConvert.DeserializeObject<People>(response);
-
-            return people;
-        }
-
-        private async Task<Vehicles> GetVehiclesPage(string uri)
-        {
-            var response = await _swapiClient.HttpClient.GetStringAsync(uri);
-
-            var vehicles = JsonConvert.DeserializeObject<Vehicles>(response);
-
-            return vehicles;
+            return results;
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PlattSampleApp.Models;
@@ -11,9 +8,9 @@ namespace PlattSampleApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly SwapiService _swapiService;
+        private readonly ISwapiService _swapiService;
 
-        public HomeController(SwapiService swapiService)
+        public HomeController(ISwapiService swapiService)
         {
             _swapiService = swapiService;
         }
@@ -47,8 +44,6 @@ namespace PlattSampleApp.Controllers
 
             var model = new PlanetResidentsViewModel(planetName, residents);
 
-            // TODO: Implement this controller action
-
             return View(model);
         }
 
@@ -57,8 +52,6 @@ namespace PlattSampleApp.Controllers
             var vehicles = await _swapiService.GetVehicles();
 
             var model = new VehicleSummaryViewModel(vehicles);
-
-            // TODO: Implement this controller action
 
             return View(model);
         }
