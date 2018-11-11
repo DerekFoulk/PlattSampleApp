@@ -33,7 +33,7 @@ namespace PlattSampleApp.Services
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentException($"{nameof(name)} must not be null, empty or whitespace.", nameof(name));
 
-            var planets = await CompilePaginatedResults<Planet, Planets>($"planets?search={name}");
+            var planets = await CompilePaginatedResults<Planet>($"planets?search={name}");
 
             var planet = planets.FirstOrDefault();
 
@@ -42,7 +42,7 @@ namespace PlattSampleApp.Services
 
         public async Task<IEnumerable<Planet>> GetPlanets()
         {
-            var planets = await CompilePaginatedResults<Planet, Planets>("planets");
+            var planets = await CompilePaginatedResults<Planet>("planets");
 
             return planets;
         }
@@ -54,7 +54,7 @@ namespace PlattSampleApp.Services
 
             var planet = await GetPlanet(planetName);
 
-            var people = await CompilePaginatedResults<Person, People>("people");
+            var people = await CompilePaginatedResults<Person>("people");
 
             var residents = people.Where(x => x.Homeworld == planet.Url);
 
@@ -63,20 +63,20 @@ namespace PlattSampleApp.Services
 
         public async Task<IEnumerable<Vehicle>> GetVehicles()
         {
-            var vehicles = await CompilePaginatedResults<Vehicle, Vehicles>("vehicles");
+            var vehicles = await CompilePaginatedResults<Vehicle>("vehicles");
 
             return vehicles;
         }
 
-        private async Task<IEnumerable<TResult>> CompilePaginatedResults<TResult, TResults>(string uri) where TResults : IPaginatedResponse<TResult>
+        private async Task<IEnumerable<T>> CompilePaginatedResults<T>(string uri)
         {
-            var results = new List<TResult>();
+            var results = new List<T>();
 
             var nextPage = uri;
 
             while (!string.IsNullOrWhiteSpace(nextPage))
             {
-                var currentPage = await GetPage<TResults>(nextPage);
+                var currentPage = await GetPage<T>(nextPage);
 
                 results.AddRange(currentPage.Results);
 
@@ -86,11 +86,11 @@ namespace PlattSampleApp.Services
             return results;
         }
 
-        private async Task<T> GetPage<T>(string uri)
+        private async Task<IPaginatedResponse<T>> GetPage<T>(string uri)
         {
             var response = await _swapiClient.HttpClient.GetStringAsync(uri);
 
-            var results = JsonConvert.DeserializeObject<T>(response);
+            var results = JsonConvert.DeserializeObject<PaginatedResponse<T>>(response);
 
             return results;
         }
