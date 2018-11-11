@@ -8,9 +8,9 @@ namespace PlattSampleApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly SwapiService _swapiService;
+        private readonly ISwapiService _swapiService;
 
-        public HomeController(SwapiService swapiService)
+        public HomeController(ISwapiService swapiService)
         {
             _swapiService = swapiService;
         }

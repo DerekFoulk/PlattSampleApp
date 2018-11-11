@@ -7,7 +7,7 @@ using PlattSampleApp.Models.Swapi;
 
 namespace PlattSampleApp.Services
 {
-    public class SwapiService
+    public class SwapiService : ISwapiService
     {
         private readonly SwapiClient _swapiClient;
 
