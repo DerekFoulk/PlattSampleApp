@@ -3,14 +3,8 @@ using Newtonsoft.Json;
 
 namespace PlattSampleApp.Models.Swapi
 {
-    public class Vehicle
+    public class Vehicle : Result
     {
-        /// <summary>
-        /// The name of this vehicle. The common name, such as "Sand Crawler" or "Speeder bike".
-        /// </summary>
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
         /// <summary>
         /// The model or official name of this vehicle. Such as "All-Terrain Attack Transport".
         /// </summary>
@@ -72,21 +66,9 @@ namespace PlattSampleApp.Models.Swapi
         public string Consumables { get; set; }
 
         /// <summary>
-        /// An array of Film URL Resources that this vehicle has appeared in.
-        /// </summary>
-        [JsonProperty("films")]
-        public IEnumerable<string> Films { get; set; }
-
-        /// <summary>
         /// An array of People URL Resources that this vehicle has been piloted by.
         /// </summary>
         [JsonProperty("pilots")]
         public IEnumerable<string> Pilots { get; set; }
-
-        /// <summary>
-        /// The hypermedia URL of this resource.
-        /// </summary>
-        [JsonProperty("url")]
-        public string Url { get; set; }
     }
 }

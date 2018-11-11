@@ -3,14 +3,8 @@ using Newtonsoft.Json;
 
 namespace PlattSampleApp.Models.Swapi
 {
-    public class Planet
+    public class Planet : Result
     {
-        /// <summary>
-        /// The name of this planet.
-        /// </summary>
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
         /// <summary>
         /// The number of standard hours it takes for this planet to complete a single rotation on its axis.
         /// </summary>
@@ -64,17 +58,5 @@ namespace PlattSampleApp.Models.Swapi
         /// </summary>
         [JsonProperty("residents")]
         public IEnumerable<string> Residents { get; set; }
-
-        /// <summary>
-        /// An array of Film URL Resources that this planet has appeared in.
-        /// </summary>
-        [JsonProperty("films")]
-        public IEnumerable<string> Films { get; set; }
-
-        /// <summary>
-        /// The hypermedia URL of this resource.
-        /// </summary>
-        [JsonProperty("url")]
-        public string Url { get; set; }
     }
 }
