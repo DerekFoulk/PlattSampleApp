@@ -1,16 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using PlattSampleApp.Models.Swapi;
 
 namespace PlattSampleApp.Models
 {
     public class PlanetResidentsViewModel
     {
-        public PlanetResidentsViewModel()
+        public PlanetResidentsViewModel(string planetName, IEnumerable<Person> residents)
         {
-            Residents = new List<ResidentSummary>();
+            PlanetName = planetName;
+
+            var residentSummaries = residents.Select(x => new ResidentSummary(x)).OrderBy(x => x.Name).ToList();
+
+            Residents = residentSummaries;
         }
+
+        public string PlanetName { get; set; }
 
         public List<ResidentSummary> Residents { get; set; }
     }
