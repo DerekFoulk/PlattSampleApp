@@ -72,7 +72,25 @@ namespace PlattSampleApp.Services
             return residents;
         }
 
-        // TODO: Combine the following two methods
+        public async Task<IEnumerable<Vehicle>> GetVehicles()
+        {
+            var vehicles = new List<Vehicle>();
+
+            var nextPage = "vehicles";
+
+            while (!string.IsNullOrWhiteSpace(nextPage))
+            {
+                var currentPage = await GetVehiclesPage(nextPage);
+
+                vehicles.AddRange(currentPage.Results);
+
+                nextPage = currentPage.Next;
+            }
+
+            return vehicles;
+        }
+
+        // TODO: Combine the following three methods
         private async Task<Planets> GetPlanetsPage(string uri)
         {
             var response = await _swapiClient.HttpClient.GetStringAsync(uri);
@@ -89,6 +107,15 @@ namespace PlattSampleApp.Services
             var people = JsonConvert.DeserializeObject<People>(response);
 
             return people;
+        }
+
+        private async Task<Vehicles> GetVehiclesPage(string uri)
+        {
+            var response = await _swapiClient.HttpClient.GetStringAsync(uri);
+
+            var vehicles = JsonConvert.DeserializeObject<Vehicles>(response);
+
+            return vehicles;
         }
     }
 }
