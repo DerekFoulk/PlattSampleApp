@@ -24,7 +24,7 @@ namespace PlattSampleApp.Controllers
         {
             var planets = await _swapiService.GetPlanets();
 
-            var model = new AllPlanetsViewModel(planets);
+            var model = new PlanetsViewModel(planets);
 
             return View(model);
         }
@@ -33,7 +33,7 @@ namespace PlattSampleApp.Controllers
         {
             var planet = await _swapiService.GetPlanet(id);
 
-            var model = new SinglePlanetViewModel(planet);
+            var model = new PlanetViewModel(planet);
 
             return View(model);
         }
@@ -42,7 +42,7 @@ namespace PlattSampleApp.Controllers
         {
             var residents = await _swapiService.GetResidents(planetName);
 
-            var model = new PlanetResidentsViewModel(planetName, residents);
+            var model = new ResidentsViewModel(planetName, residents);
 
             return View(model);
         }
@@ -51,7 +51,7 @@ namespace PlattSampleApp.Controllers
         {
             var vehicles = await _swapiService.GetVehicles();
 
-            var model = new VehicleSummaryViewModel(vehicles);
+            var model = new VehiclesViewModel(vehicles);
 
             return View(model);
         }

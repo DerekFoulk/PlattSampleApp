@@ -6,9 +6,9 @@ using PlattSampleApp.Models.Swapi;
 
 namespace PlattSampleApp.Models
 {
-    public class AllPlanetsViewModel
+    public class PlanetsViewModel
     {
-        public AllPlanetsViewModel(IEnumerable<Planet> planets)
+        public PlanetsViewModel(IEnumerable<Planet> planets)
         {
             var planetDetails = planets.Select(x => new PlanetDetailsViewModel(x)).ToList();
 
