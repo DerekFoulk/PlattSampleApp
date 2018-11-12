@@ -4,7 +4,9 @@
     ViewData["Title"] = $"Residents of Planet {Model.PlanetName}";
 }
 
-<h1>@ViewData["Title"]</h1>
+<header>
+    <h1>@ViewData["Title"]</h1>
+</header>
 
 <section class="row">
     @Html.DisplayFor(x => x.Residents)

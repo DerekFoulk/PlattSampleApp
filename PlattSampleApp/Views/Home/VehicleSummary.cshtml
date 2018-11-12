@@ -4,32 +4,41 @@
     ViewData["Title"] = "Vehicle Summary";
 }
 
-<h1>@ViewData["Title"]</h1>
+<header>
+    <h1>@ViewData["Title"]</h1>
+</header>
 
-<p>
-    <strong>@Html.DisplayNameFor(model => model.VehicleCount):</strong> @Html.DisplayFor(model => model.VehicleCount)
-</p>
+<section class="row">
+    <article class="col-xs-12">
+        <dl>
+            <dt>@Html.DisplayNameFor(model => model.VehicleCount)</dt>
+            <dd>@Html.DisplayFor(model => model.VehicleCount)</dd>
+            <dt>@Html.DisplayNameFor(model => model.ManufacturerCount)</dt>
+            <dd>@Html.DisplayFor(model => model.ManufacturerCount)</dd>
+        </dl>
+    </article>
+</section>
 
-<p>
-    <strong>@Html.DisplayNameFor(model => model.ManufacturerCount):</strong> @Html.DisplayFor(model => model.ManufacturerCount)
-</p>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Details[0].ManufacturerName)</th>
-            <th>@Html.DisplayNameFor(model => model.Details[0].VehicleCount)</th>
-            <th>@Html.DisplayNameFor(model => model.Details[0].AverageCost)</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Details)
-        {
-            <tr>
-                <td>@Html.DisplayFor(model => item.ManufacturerName)</td>
-                <td>@Html.DisplayFor(model => item.VehicleCount)</td>
-                <td>@Html.DisplayFor(model => item.AverageCost)</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<section class="row">
+    <article class="col-xs-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Details[0].ManufacturerName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Details[0].VehicleCount)</th>
+                    <th>@Html.DisplayNameFor(model => model.Details[0].AverageCost)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Details)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(model => item.ManufacturerName)</td>
+                        <td>@Html.DisplayFor(model => item.VehicleCount)</td>
+                        <td>@Html.DisplayFor(model => item.AverageCost)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </article>
+</section>

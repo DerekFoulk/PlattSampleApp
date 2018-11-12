@@ -1,58 +1,64 @@
 ﻿@model SinglePlanetViewModel
 
 @{
-    ViewData["Title"] = $"{Model.Name} (Planet)";
+    ViewData["Title"] = $"Planet {Model.Name}";
 }
 
-<h1>@ViewData["Title"]</h1>
+<header>
+    <h1>@ViewData["Title"]</h1>
+</header>
 
-<dl class="dl-horizontal">
-    <dt>
-        @Html.DisplayNameFor(model => model.Name)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.Name)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.LengthOfDay)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.LengthOfDay)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.LengthOfYear)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.LengthOfYear)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.Diameter)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.Diameter)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.Climate)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.Climate)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.Gravity)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.Gravity)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.SurfaceWaterPercentage)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.SurfaceWaterPercentage)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.Population)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.Population)
-    </dd>
-</dl>
+<section class="row">
+    <article class="col-xs-12">
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LengthOfDay)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LengthOfDay)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LengthOfYear)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LengthOfYear)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Diameter)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Diameter)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Climate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Climate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Gravity)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Gravity)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.SurfaceWaterPercentage)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SurfaceWaterPercentage)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Population)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Population)
+            </dd>
+        </dl>
+    </article>
+</section>
