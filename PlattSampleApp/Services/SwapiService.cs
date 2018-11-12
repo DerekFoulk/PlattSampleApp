@@ -50,7 +50,8 @@ namespace PlattSampleApp.Services
         public async Task<IEnumerable<Person>> GetResidents(string planetName)
         {
             if (string.IsNullOrWhiteSpace(planetName))
-                throw new ArgumentException($"{nameof(planetName)} must not be null, empty or whitespace.", nameof(planetName));
+                throw new ArgumentException($"{nameof(planetName)} must not be null, empty or whitespace.",
+                    nameof(planetName));
 
             var planet = await GetPlanet(planetName);
 

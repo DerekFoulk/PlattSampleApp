@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
 using PlattSampleApp.Models.Swapi;
 
 namespace PlattSampleApp.Models
@@ -19,11 +16,9 @@ namespace PlattSampleApp.Models
             AverageCost = grouping.Select(x => double.Parse(x.CostInCredits)).Average();
         }
 
-        [DisplayName("Manufacturer Name")]
-        public string ManufacturerName { get; set; }
+        [DisplayName("Manufacturer Name")] public string ManufacturerName { get; set; }
 
-        [DisplayName("Vehicle Count")]
-        public int VehicleCount { get; set; }
+        [DisplayName("Vehicle Count")] public int VehicleCount { get; set; }
 
         [DisplayName("Average Cost")]
         [DisplayFormat(DataFormatString = "{0:N2}")]

@@ -1,5 +1,3 @@
-using System;
-
 namespace PlattSampleApp.Models
 {
     public class ErrorViewModel
