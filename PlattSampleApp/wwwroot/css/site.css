@@ -17,3 +17,14 @@
 */
 
 .dl-horizontal dt { white-space: normal; }
+
+/* Format search panel */
+.well > .row > .form-group:last-child {
+    margin-bottom: 0;
+}
+
+@media screen and (min-width: 992px) {
+    .well > .row > .form-group {
+        margin-bottom: 0;
+    }
+}
