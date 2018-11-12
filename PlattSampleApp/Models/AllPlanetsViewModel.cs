@@ -19,7 +19,7 @@ namespace PlattSampleApp.Models
         public List<PlanetDetailsViewModel> Planets { get; set; }
 
         [DisplayName("Average Diameter")]
-        [DisplayFormat(DataFormatString = "{0:N2}")]
+        [DisplayFormat(DataFormatString = "{0:N2}km")]
         public double AverageDiameter { get; set; }
     }
 }

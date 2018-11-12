@@ -1,41 +1,26 @@
 ﻿@{
-    ViewBag.Title = "Platt Code Sample - Star Wars App";
+    ViewData["Title"] = "Platt Code Sample - Star Wars App";
 }
 
-<h1>@ViewBag.Title</h1>
+<header>
+    <h1>@ViewData["Title"]</h1>
+</header>
 
-<div class="row-spacer">
-    <div class="row">
-        <div class="col-md-12">
-            <a asp-area="" asp-controller="Home" asp-action="GetAllPlanets" class="btn btn-default">See Results</a>
-            <span>Get All Planets - Largest Diameter to Smallest Diameter</span>
-        </div>
-    </div>
-</div>
-
-<div class="row-spacer">
-    <div class="row">
-        <div class="col-md-12">
-            <a asp-area="" asp-controller="Home" asp-action="GetPlanetTwentyTwo" asp-route-id="22" class="btn btn-default">See Results</a>
-            <span>Get Details for Planet 22</span>
-        </div>
-    </div>
-</div>
-
-<div class="row-spacer">
-    <div class="row">
-        <div class="col-md-12">
-            <a asp-area="" asp-controller="Home" asp-action="GetResidentsOfPlanetNaboo" asp-route-planetname="Naboo" class="btn btn-default">See Results</a>
-            <span>Get Residents of Planet Naboo</span>
-        </div>
-    </div>
-</div>
-
-<div class="row-spacer">
-    <div class="row">
-        <div class="col-md-12">
-            <a asp-area="" asp-controller="Home" asp-action="VehicleSummary" class="btn btn-default">See Results</a>
-            <span>Vehicle Manufacturer Summary</span>
-        </div>
-    </div>
-</div>
+<section class="row">
+    <nav class="col-sm-6 col-lg-4">
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation">
+                <a asp-controller="Home" asp-action="GetAllPlanets">Get All Planets - Largest Diameter to Smallest Diameter</a>
+            </li>
+            <li role="presentation">
+                <a asp-controller="Home" asp-action="GetPlanetTwentyTwo" asp-route-id="22">Get Details for Planet 22</a>
+            </li>
+            <li role="presentation">
+                <a asp-controller="Home" asp-action="GetResidentsOfPlanetNaboo" asp-route-planetname="Naboo">Get Residents of Planet Naboo</a>
+            </li>
+            <li role="presentation">
+                <a asp-controller="Home" asp-action="VehicleSummary">Vehicle Manufacturer Summary</a>
+            </li>
+        </ul>
+    </nav>
+</section>
