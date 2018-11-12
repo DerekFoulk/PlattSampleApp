@@ -2,7 +2,7 @@
 
 namespace PlattSampleApp.Models.Swapi
 {
-    public class PaginatedResponse<T> : IPaginatedResponse<T>
+    public class PaginatedResponse<T> : IPaginatedResponse<T> where T : Result
     {
         public int Count { get; set; }
 

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace PlattSampleApp.Models.Swapi
 {
-    public interface IPaginatedResponse<T>
+    public interface IPaginatedResponse<T> where T : Result
     {
         [JsonProperty("count")] int Count { get; set; }
 
