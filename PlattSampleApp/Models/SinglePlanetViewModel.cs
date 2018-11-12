@@ -14,12 +14,13 @@ namespace PlattSampleApp.Models
             Diameter = int.TryParse(planet.Diameter, out var diameter) ? diameter : (int?) null;
             Climate = planet.Climate;
             Gravity = planet.Gravity;
-            SurfaceWaterPercentage = int.TryParse(planet.SurfaceWater, out var surfaceWaterPercentage) ? surfaceWaterPercentage : (int?) null;
+            SurfaceWaterPercentage = int.TryParse(planet.SurfaceWater, out var surfaceWaterPercentage)
+                ? surfaceWaterPercentage
+                : (int?) null;
             Population = long.TryParse(planet.Population, out var population) ? population : (long?) null;
         }
 
-        [DisplayName("Planet Name")]
-        public string Name { get; set; }
+        [DisplayName("Planet Name")] public string Name { get; set; }
 
         [DisplayName("Length of Day")]
         [DisplayFormat(DataFormatString = "{0:N0} hours", NullDisplayText = "(Unknown)")]

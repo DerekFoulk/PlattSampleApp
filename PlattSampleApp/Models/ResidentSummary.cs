@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using PlattSampleApp.Models.Swapi;
 
 namespace PlattSampleApp.Models
@@ -13,8 +9,8 @@ namespace PlattSampleApp.Models
         public ResidentSummary(Person person)
         {
             Name = person.Name;
-            Height = int.TryParse(person.Height, out var height) ? height : (int?)null;
-            Weight = int.TryParse(person.Mass, out var weight) ? weight : (int?)null;
+            Height = int.TryParse(person.Height, out var height) ? height : (int?) null;
+            Weight = int.TryParse(person.Mass, out var weight) ? weight : (int?) null;
             Gender = person.Gender;
             HairColor = person.HairColor;
             EyeColor = person.EyeColor;
@@ -31,13 +27,10 @@ namespace PlattSampleApp.Models
 
         public string Gender { get; set; }
 
-        [DisplayName("Hair Color")]
-        public string HairColor { get; set; }
+        [DisplayName("Hair Color")] public string HairColor { get; set; }
 
-        [DisplayName("Eye Color")]
-        public string EyeColor { get; set; }
+        [DisplayName("Eye Color")] public string EyeColor { get; set; }
 
-        [DisplayName("Skin Color")]
-        public string SkinColor { get; set; }
+        [DisplayName("Skin Color")] public string SkinColor { get; set; }
     }
 }
