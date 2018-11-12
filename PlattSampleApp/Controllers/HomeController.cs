@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PlattSampleApp.Models;
@@ -56,13 +57,18 @@ namespace PlattSampleApp.Controllers
             return View(model);
         }
 
-        public async Task<ActionResult> Starships()
+        public ActionResult Starships()
+        {
+            return View();
+        }
+
+        public async Task<JsonResult> StarshipsJson()
         {
             var starships = await _swapiService.GetStarships();
 
-            var model = new StarshipsViewModel(starships);
+            var model = starships.Select(x => new StarshipDetailsViewModel(x));
 
-            return View(model);
+            return Json(model);
         }
 
         public IActionResult Error()
