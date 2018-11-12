@@ -20,7 +20,7 @@ namespace PlattSampleApp.Controllers
             return View();
         }
 
-        public async Task<ActionResult> GetAllPlanets()
+        public async Task<ActionResult> Planets()
         {
             var planets = await _swapiService.GetPlanets();
 
@@ -29,7 +29,7 @@ namespace PlattSampleApp.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> GetPlanetTwentyTwo(int id)
+        public async Task<IActionResult> Planet(int id)
         {
             var planet = await _swapiService.GetPlanet(id);
 
@@ -38,7 +38,7 @@ namespace PlattSampleApp.Controllers
             return View(model);
         }
 
-        public async Task<ActionResult> GetResidentsOfPlanetNaboo(string planetName)
+        public async Task<ActionResult> Residents(string planetName)
         {
             var residents = await _swapiService.GetResidents(planetName);
 
@@ -47,7 +47,7 @@ namespace PlattSampleApp.Controllers
             return View(model);
         }
 
-        public async Task<ActionResult> VehicleSummary()
+        public async Task<ActionResult> Vehicles()
         {
             var vehicles = await _swapiService.GetVehicles();
 
