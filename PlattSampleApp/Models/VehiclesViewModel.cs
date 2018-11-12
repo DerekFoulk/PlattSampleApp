@@ -6,9 +6,9 @@ using PlattSampleApp.Models.Swapi;
 
 namespace PlattSampleApp.Models
 {
-    public class VehicleSummaryViewModel
+    public class VehiclesViewModel
     {
-        public VehicleSummaryViewModel(IEnumerable<Vehicle> vehicles)
+        public VehiclesViewModel(IEnumerable<Vehicle> vehicles)
         {
             var allVehicles = vehicles.ToList();
             var vehiclesWithPrice = allVehicles

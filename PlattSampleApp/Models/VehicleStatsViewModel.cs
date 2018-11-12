@@ -21,7 +21,7 @@ namespace PlattSampleApp.Models
         [DisplayName("Vehicle Count")] public int VehicleCount { get; set; }
 
         [DisplayName("Average Cost")]
-        [DisplayFormat(DataFormatString = "{0:N2}")]
+        [DisplayFormat(DataFormatString = "{0:N2}", NullDisplayText = "(Unknown)")]
         public double AverageCost { get; set; }
     }
 }

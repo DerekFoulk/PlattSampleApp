@@ -4,9 +4,9 @@ using PlattSampleApp.Models.Swapi;
 
 namespace PlattSampleApp.Models
 {
-    public class SinglePlanetViewModel
+    public class PlanetViewModel
     {
-        public SinglePlanetViewModel(Planet planet)
+        public PlanetViewModel(Planet planet)
         {
             Name = planet.Name;
             LengthOfDay = int.TryParse(planet.RotationPeriod, out var lengthOfDay) ? lengthOfDay : (int?) null;

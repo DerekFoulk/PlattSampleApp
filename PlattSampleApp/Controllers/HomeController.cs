@@ -20,38 +20,38 @@ namespace PlattSampleApp.Controllers
             return View();
         }
 
-        public async Task<ActionResult> GetAllPlanets()
+        public async Task<ActionResult> Planets()
         {
             var planets = await _swapiService.GetPlanets();
 
-            var model = new AllPlanetsViewModel(planets);
+            var model = new PlanetsViewModel(planets);
 
             return View(model);
         }
 
-        public async Task<IActionResult> GetPlanetTwentyTwo(int id)
+        public async Task<IActionResult> Planet(int id)
         {
             var planet = await _swapiService.GetPlanet(id);
 
-            var model = new SinglePlanetViewModel(planet);
+            var model = new PlanetViewModel(planet);
 
             return View(model);
         }
 
-        public async Task<ActionResult> GetResidentsOfPlanetNaboo(string planetName)
+        public async Task<ActionResult> Residents(string planetName)
         {
             var residents = await _swapiService.GetResidents(planetName);
 
-            var model = new PlanetResidentsViewModel(planetName, residents);
+            var model = new ResidentsViewModel(planetName, residents);
 
             return View(model);
         }
 
-        public async Task<ActionResult> VehicleSummary()
+        public async Task<ActionResult> Vehicles()
         {
             var vehicles = await _swapiService.GetVehicles();
 
-            var model = new VehicleSummaryViewModel(vehicles);
+            var model = new VehiclesViewModel(vehicles);
 
             return View(model);
         }
