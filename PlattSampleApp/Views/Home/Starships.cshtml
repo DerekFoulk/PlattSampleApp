@@ -1,0 +1,60 @@
+﻿@model StarshipsViewModel
+
+@{
+    ViewData["Title"] = "Starships";
+}
+
+<header>
+    <h1>Starships</h1>
+</header>
+
+<section class="row">
+    <article class="col-xs-12">
+        <div class="table-responsive">
+            <table class="table table-striped table-condensed">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Starships[0].Name)</th>
+                        <th>@Html.DisplayNameFor(model => model.Starships[0].Class)</th>
+                        <th>@Html.DisplayNameFor(model => model.Starships[0].Manufacturer)</th>
+                        <th>@Html.DisplayNameFor(model => model.Starships[0].Cost)</th>
+                        <th>@Html.DisplayNameFor(model => model.Starships[0].Length)</th>
+                        <th>@Html.DisplayNameFor(model => model.Starships[0].RequiredCrew)</th>
+                        <th>@Html.DisplayNameFor(model => model.Starships[0].PassengerCapacity)</th>
+                        <th>@Html.DisplayNameFor(model => model.Starships[0].MaxSpeed)</th>
+                        <th>@Html.DisplayNameFor(model => model.Starships[0].HyperdriveRating)</th>
+                        <th>@Html.DisplayNameFor(model => model.Starships[0].MaxMegalightsPerHour)</th>
+                        <th>@Html.DisplayNameFor(model => model.Starships[0].CargoCapacity)</th>
+                        <th>@Html.DisplayNameFor(model => model.Starships[0].ConsumablesLongevity)</th>
+                        <th>@Html.DisplayNameFor(model => model.Starships[0].Pilots)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var starship in Model.Starships)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(model => starship.Name)</td>
+                            <td>@Html.DisplayFor(model => starship.Class)</td>
+                            <td>@Html.DisplayFor(model => starship.Manufacturer)</td>
+                            <td>@Html.DisplayFor(model => starship.Cost)</td>
+                            <td>@Html.DisplayFor(model => starship.Length)</td>
+                            <td>@Html.DisplayFor(model => starship.RequiredCrew)</td>
+                            <td>@Html.DisplayFor(model => starship.PassengerCapacity)</td>
+                            <td>@Html.DisplayFor(model => starship.MaxSpeed)</td>
+                            <td>@Html.DisplayFor(model => starship.HyperdriveRating)</td>
+                            <td>@Html.DisplayFor(model => starship.MaxMegalightsPerHour)</td>
+                            <td>@Html.DisplayFor(model => starship.CargoCapacity)</td>
+                            <td>@Html.DisplayFor(model => starship.ConsumablesLongevity)</td>
+                            <td>
+                                @foreach (var pilot in starship.Pilots)
+                                {
+                                    @Html.DisplayFor(model => pilot)
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </article>
+</section>

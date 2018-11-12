@@ -15,5 +15,7 @@ namespace PlattSampleApp.Services
         Task<IEnumerable<Person>> GetResidents(string planetName);
 
         Task<IEnumerable<Vehicle>> GetVehicles();
+
+        Task<IEnumerable<Starship>> GetStarships();
     }
 }

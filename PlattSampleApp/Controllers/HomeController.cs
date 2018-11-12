@@ -56,6 +56,15 @@ namespace PlattSampleApp.Controllers
             return View(model);
         }
 
+        public async Task<ActionResult> Starships()
+        {
+            var starships = await _swapiService.GetStarships();
+
+            var model = new StarshipsViewModel(starships);
+
+            return View(model);
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
