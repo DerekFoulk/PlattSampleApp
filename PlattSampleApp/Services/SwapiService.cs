@@ -69,7 +69,7 @@ namespace PlattSampleApp.Services
             return vehicles;
         }
 
-        private async Task<IEnumerable<T>> CompilePaginatedResults<T>(string uri)
+        private async Task<IEnumerable<T>> CompilePaginatedResults<T>(string uri) where T : Result
         {
             var results = new List<T>();
 
@@ -87,7 +87,7 @@ namespace PlattSampleApp.Services
             return results;
         }
 
-        private async Task<IPaginatedResponse<T>> GetPage<T>(string uri)
+        private async Task<IPaginatedResponse<T>> GetPage<T>(string uri) where T : Result
         {
             var response = await _swapiClient.HttpClient.GetStringAsync(uri);
 
