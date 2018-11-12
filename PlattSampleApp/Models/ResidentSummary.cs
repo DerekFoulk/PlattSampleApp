@@ -4,9 +4,9 @@ using PlattSampleApp.Models.Swapi;
 
 namespace PlattSampleApp.Models
 {
-    public class ResidentSummaryViewModel
+    public class ResidentSummary
     {
-        public ResidentSummaryViewModel(Person person)
+        public ResidentSummary(Person person)
         {
             Name = person.Name;
             Height = int.TryParse(person.Height, out var height) ? height : (int?) null;

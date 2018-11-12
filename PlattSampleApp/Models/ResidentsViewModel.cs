@@ -10,13 +10,13 @@ namespace PlattSampleApp.Models
         {
             PlanetName = planetName;
 
-            var residentSummaries = residents.Select(x => new ResidentSummaryViewModel(x)).OrderBy(x => x.Name).ToList();
+            var residentSummaries = residents.Select(x => new ResidentSummary(x)).OrderBy(x => x.Name).ToList();
 
             Residents = residentSummaries;
         }
 
         public string PlanetName { get; set; }
 
-        public List<ResidentSummaryViewModel> Residents { get; set; }
+        public List<ResidentSummary> Residents { get; set; }
     }
 }
