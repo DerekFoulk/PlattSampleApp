@@ -19,10 +19,10 @@ namespace PlattSampleApp.Models
 
         public string Name { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:N0} cm")]
+        [DisplayFormat(DataFormatString = "{0:N0} cm", NullDisplayText = "(Unknown)")]
         public int? Height { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:N0} kg")]
+        [DisplayFormat(DataFormatString = "{0:N0} kg", NullDisplayText = "(Unknown)")]
         public int? Weight { get; set; }
 
         public string Gender { get; set; }
