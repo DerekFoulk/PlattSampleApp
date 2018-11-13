@@ -9,5 +9,33 @@
 </header>
 
 <section class="row">
-    @Html.DisplayFor(x => x.Residents)
+    <article class="col-xs-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Residents[0].Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.Residents[0].Height)</th>
+                    <th>@Html.DisplayNameFor(model => model.Residents[0].Weight)</th>
+                    <th>@Html.DisplayNameFor(model => model.Residents[0].Gender)</th>
+                    <th>@Html.DisplayNameFor(model => model.Residents[0].HairColor)</th>
+                    <th>@Html.DisplayNameFor(model => model.Residents[0].EyeColor)</th>
+                    <th>@Html.DisplayNameFor(model => model.Residents[0].SkinColor)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var resident in Model.Residents)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => resident.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => resident.Height)</td>
+                        <td>@Html.DisplayFor(modelItem => resident.Weight)</td>
+                        <td>@Html.DisplayFor(modelItem => resident.Gender)</td>
+                        <td>@Html.DisplayFor(modelItem => resident.HairColor)</td>
+                        <td>@Html.DisplayFor(modelItem => resident.EyeColor)</td>
+                        <td>@Html.DisplayFor(modelItem => resident.SkinColor)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </article>
 </section>
