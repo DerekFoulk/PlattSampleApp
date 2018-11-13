@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Starships";
+}
+
+<header>
+    <h1>Starships</h1>
+</header>
+
+<section class="row">
+    <article id="starships" class="col-xs-12">
+    </article>
+</section>
+
+@section Scripts
+    {
+    @{await Html.RenderPartialAsync("_ReactScriptsPartial");}
+
+    <script src="~/js/Starships.jsx"></script>
+}

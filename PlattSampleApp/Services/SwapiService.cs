@@ -69,6 +69,13 @@ namespace PlattSampleApp.Services
             return vehicles;
         }
 
+        public async Task<IEnumerable<Starship>> GetStarships()
+        {
+            var starships = await CompilePaginatedResults<Starship>("starships");
+
+            return starships;
+        }
+
         private async Task<IEnumerable<T>> CompilePaginatedResults<T>(string uri) where T : Result
         {
             var results = new List<T>();
