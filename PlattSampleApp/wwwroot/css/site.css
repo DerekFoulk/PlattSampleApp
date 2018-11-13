@@ -28,3 +28,8 @@
         margin-bottom: 0;
     }
 }
+
+/* Add margin between definitions in DL elements */
+*:not(.dl-horizontal) > dd:not(:last-child) {
+    margin-bottom: 10px;
+}
